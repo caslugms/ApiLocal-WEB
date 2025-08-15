@@ -9,8 +9,8 @@ router.get('/items', (req, res) => {
 router.get('/items/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const item = sampleData.find(item => item.id === id);
-  
-  if (item.exists) {
+
+  if (item) {
     res.json(item);
   } else {
     res.status(404).json({ message: 'Item não encontrado' });
@@ -24,7 +24,7 @@ router.post('/items', (req, res) => {
     age: req.body.age,
     cidade: req.body.cidade
   };
-  
+
   sampleData.push(newItem);
   res.status(201).json(newItem);
 });
